@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+}
+#campuses {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+#students {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+body::after {
+  content: "";
+  background-color: lightslategrey;
+  opacity: 0.1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  margin: 2px;
+}
+nav {
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #221e1e;
+  color: #c0c0c0;
+  display: flex;
+  height: 80px;
+  padding: 10px;
+  justify-content: space-around;
+  align-content: space-between;
+}
+nav :visited {
+  text-decoration: none;
+  color: #c0c0c0;
+}
+nav :hover {
+  text-decoration: none;
+  color: yellow;
+}
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
