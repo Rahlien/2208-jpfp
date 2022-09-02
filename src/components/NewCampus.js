@@ -7,7 +7,9 @@ const NewCampus = ()=> {
 
   const [form, setForm] = useState({
     name: '',
-    address: ''
+    address: '',
+    imageUrl: '',
+    description: ''
   })
 
   const dispatch = useDispatch();
@@ -23,15 +25,21 @@ const NewCampus = ()=> {
     e.preventDefault();
     dispatch(addNewCampus(form));
   }
-  console.log(form)
 
   return (
     <form id='campus-form' onSubmit={handleSubmit}>
+      <h3>Register a new Campus</h3>  
       <label htmlFor='name'>College Name:</label>
       <input onChange={handleChange('name')} name='taskName' value={form.name} />
 
       <label htmlFor='address'>Address:</label>
       <input onChange={handleChange('address')} name='address' value={form.address} />
+      
+      <label htmlFor='description'>Description:</label>
+      <input onChange={handleChange('description')} name='description' value={form.description} />
+      
+      <label htmlFor='imageUrl'>Image URL:</label>
+      <input onChange={handleChange('imageUrl')} name='imageUrl' value={form.imageUrl} />
 
       <button type='submit'>Submit</button>
     </form>

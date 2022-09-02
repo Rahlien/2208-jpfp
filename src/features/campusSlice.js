@@ -8,6 +8,8 @@ export const getCampuses = createAsyncThunk('campuses/getCampuses', () => {
         })
 })
 
+
+//testing createAsyncThunk
 export const getCampus = createAsyncThunk('campuses/getCampus', (params) => {
     return axios.get(`/api/campuses/${params.id}`)
         .then((res) => {
@@ -15,12 +17,20 @@ export const getCampus = createAsyncThunk('campuses/getCampus', (params) => {
         })
 })
 
+//using regular async to add campus to reducers
 export const addNewCampus = (campus) => {
     return async (dispatch) => {
       const { data: newCampus } = await axios.post('/api/campuses', campus)
       dispatch(addCampus(newCampus))
     }
   }
+
+export const deleteCampus = (id) => {
+    return async (dispatch) => {
+        await axios.delete(`/api/campuses/${id}`)
+        dispatch(removeCampus(id))
+    }
+}
 
 const campusSlice = createSlice({
     name: 'campuses',
@@ -34,6 +44,11 @@ const campusSlice = createSlice({
         addCampus: (state, action) => {
             const newCampus = action.payload
             state.campuses.push(newCampus)
+        },
+        removeCampus: (state, action) => {
+            const campusId = action.payload
+            state.campuses = state.campuses.filter((campus) => campus.id !== Number(campusId))
+            return state
         }
     },
     extraReducers: {
@@ -60,5 +75,5 @@ const campusSlice = createSlice({
     }
 })
 
-export const { addCampus } = campusSlice.actions
+export const { addCampus, removeCampus } = campusSlice.actions
 export default campusSlice.reducer

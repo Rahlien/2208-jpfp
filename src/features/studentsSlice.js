@@ -15,6 +15,20 @@ export const getStudent = createAsyncThunk('students/getStudent', (params) => {
         })
 })
 
+export const deleteStudent = (id) => {
+    return async (dispatch) => {
+        await axios.delete(`/api/students/${id}`)
+        dispatch(removeStudent(id))
+    }
+}
+
+export const addNewStudent = (student) => {
+    return async (dispatch) => {
+      const { data: newStudent } = await axios.post('/api/students', student)
+      console.log(newStudent)
+      dispatch(addStudent(newStudent))
+    }
+  }
 
 const studentsSlice = createSlice({
     name: 'students',
@@ -24,7 +38,17 @@ const studentsSlice = createSlice({
         student: {},
         error: ''
     },
-    reducers: {},
+    reducers: {
+        addStudent: (state, action) => {
+            const newStudent = action.payload
+            state.students.push(newStudent)
+        },
+        removeStudent: (state, action) => {
+            const studentId = action.payload
+            state.students = state.students.filter((student) => student.id !== Number(studentId))
+            return state
+        }
+    },
     extraReducers: {
         [getStudents.pending]: (state) => {
             state.loading = true
@@ -49,4 +73,5 @@ const studentsSlice = createSlice({
     }    
 })
 
+export const { addStudent, removeStudent } = studentsSlice.actions
 export default studentsSlice.reducer

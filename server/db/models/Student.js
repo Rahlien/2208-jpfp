@@ -27,7 +27,7 @@ const db = require('../database');
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'https://sportlinx360.com/sites/default/files/public_uploads/Website_content/Website_Logos/graduate-student-avatar.png'
+    defaultValue: 'iconStudent.png'
   },
   gpa: {
     type: Sequelize.FLOAT(4, 1),

@@ -1,10 +1,14 @@
 import React from 'react'
+import Campuses from './Campuses'
+import Students from './Students'
+
 
 function HomePage() {
     return (
-        <main>
-            <h1>Welcome Students!</h1>
-            <p>Let's add some functionality!</p>
+        <main id="homePage">
+            <h1>Home Page</h1>
+            {<Campuses />}
+            {<Students />}
         </main>
     )
 }

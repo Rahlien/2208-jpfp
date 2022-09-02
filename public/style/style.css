@@ -1,26 +1,56 @@
 * {
   margin: 0;
   box-sizing: border-box;
-  font-family: arial, sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 button {
   border-radius: 2em;
   margin: 10px;
+  background-color: ghostwhite;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  border-style: ridge;
+  -webkit-transition: max-width 1s;
+  transition: max-width 1s;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+  border-color: lightgrey;
+  font-weight: bold;
+}
+button :hover {
+  max-width: 7rem;
+}
+#selector {
+  margin: 10px;
+}
+#delete {
+  color: red;
 }
 .visited {
   text-decoration: none;
   color: #000000;
 }
 .form {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   display: flex;
   margin: 10px;
   padding: 2em;
-  background-color: #494949;
+  background-color: #63e2f7;
   border-radius: 2em;
   flex-direction: column;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   justify-content: flex-end;
   align-content: space-around;
+  width: 300px;
+  border-color: aliceblue;
+  border-style: ridge;
+}
+.form h3 {
+  margin: 10px;
+}
+.form label {
+  margin: 2px;
 }
 .allItems {
   display: flex;
@@ -50,6 +80,7 @@ button {
   align-items: center;
   justify-content: center;
   align-content: space-around;
+  background-color: azure;
 }
 .singleItem img {
   max-width: 60%;
@@ -64,6 +95,7 @@ button {
 h1 {
   display: flex;
   justify-content: center;
+  align-items: top;
 }
 #campuses,
 #students {
@@ -97,6 +129,7 @@ h1 {
   align-items: center;
   justify-content: center;
   align-content: space-around;
+  background-color: azure;
 }
 #single-student img,
 #single-campus img {
@@ -110,29 +143,75 @@ h1 {
   max-width: 75%;
   margin: 10px;
 }
-#campus-form {
+#campus-form,
+#student-form {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   display: flex;
   margin: 10px;
   padding: 2em;
-  background-color: #494949;
+  background-color: #63e2f7;
   border-radius: 2em;
   flex-direction: column;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   justify-content: flex-end;
   align-content: space-around;
+  width: 300px;
+  border-color: aliceblue;
+  border-style: ridge;
 }
-#campusForm {
-  float: right;
+#campus-form h3,
+#student-form h3 {
+  margin: 10px;
+}
+#campus-form label,
+#student-form label {
+  margin: 2px;
+}
+#campusForm,
+#studentForm {
+  position: relative;
+  left: 5px;
+  width: 20%;
+}
+#homePage #studentsPage,
+#homePage #campusesPage {
+  display: flex;
+  flex-direction: row;
+}
+#studentsPage,
+#campusesPage {
+  display: flex;
+  flex-direction: row;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
 }
 li {
-  display: flex;
+  flex: 1 1 20%;
   margin: 10px;
-  padding: 10px;
+  padding: 5px;
   border-radius: 10px;
   flex-direction: column;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-  justify-content: center;
+  justify-content: flex-start;
   align-self: center;
+  text-decoration: none;
+  background-color: azure;
+  background-image: none;
+}
+li h4 {
+  background-color: aliceblue;
+  text-decoration: none;
+}
+li a {
+  display: block;
+  text-align: center;
+}
+#singleStudent,
+#singleCampus {
+  text-decoration: none;
 }
 li :visited {
   text-decoration: none;
@@ -154,20 +233,39 @@ nav {
   align-items: center;
   font-family: 'Courier New', Courier, monospace;
   background-color: #221e1e;
-  color: #c0c0c0;
+  background-image: url("https://s3-ap-south-1.amazonaws.com/blogmindler/bloglive/wp-content/uploads/2021/12/27200037/blog-23.png");
+  background-size: 15%;
+  background-position: 20% 0;
+  position: sticky;
+  opacity: 0.9;
+  color: #070606;
   display: flex;
   height: 80px;
   padding: 10px;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-content: space-between;
+}
+nav a {
+  display: flex;
+  border-radius: 10px;
+  background-color: #f2f3f5;
+  align-items: center;
+  text-decoration: none;
+  padding: 5px;
+  border-style: ridge;
+  border-color: aliceblue;
 }
 nav :visited {
   text-decoration: none;
-  color: #c0c0c0;
+  color: #000000;
 }
 nav :hover {
   text-decoration: none;
-  color: yellow;
+  color: #63e2f7;
+}
+#singleStudent :hover {
+  color: #63e2f7;
+  text-decoration: none;
 }
 main {
   margin: 10px;
