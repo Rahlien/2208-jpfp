@@ -8,8 +8,8 @@ export const getStudents = createAsyncThunk('students/getStudents', () => {
         })
 })
 
-export const getStudent = createAsyncThunk('students/getStudent', (params) => {
-    return axios.get(`/api/students/${params.id}`)
+export const getStudent = createAsyncThunk('students/getStudent', (id) => {
+    return axios.get(`/api/students/${id}`)
         .then((res) => {
             return res.data
         })
@@ -29,6 +29,14 @@ export const addNewStudent = (student) => {
       dispatch(addStudent(newStudent))
     }
   }
+  
+  export const updateStudent = (id) => {
+    return async (dispatch) => {
+      const { data: student } = await axios.post(`/api/students/${id}`)
+      console.log(student)
+      dispatch(updateStudents(student))
+    }
+  }  
 
 const studentsSlice = createSlice({
     name: 'students',
@@ -47,7 +55,15 @@ const studentsSlice = createSlice({
             const studentId = action.payload
             state.students = state.students.filter((student) => student.id !== Number(studentId))
             return state
+        },
+        enrollCollege: (state, action) => {
+           const campusId = action.payload
+           state.student.campusId = campusId
+        },
+        updateStudent: (state, action) => {
+            state.students.map(student => student.id === action.payload.id ? student: action.payload)
         }
+
     },
     extraReducers: {
         [getStudents.pending]: (state) => {
@@ -73,5 +89,5 @@ const studentsSlice = createSlice({
     }    
 })
 
-export const { addStudent, removeStudent } = studentsSlice.actions
+export const { addStudent, removeStudent, enrollCollege } = studentsSlice.actions
 export default studentsSlice.reducer

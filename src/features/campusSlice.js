@@ -10,8 +10,8 @@ export const getCampuses = createAsyncThunk('campuses/getCampuses', () => {
 
 
 //testing createAsyncThunk
-export const getCampus = createAsyncThunk('campuses/getCampus', (params) => {
-    return axios.get(`/api/campuses/${params.id}`)
+export const getCampus = createAsyncThunk('campuses/getCampus', (id) => {
+    return axios.get(`/api/campuses/${id}`)
         .then((res) => {
             return res.data
         })

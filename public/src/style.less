@@ -55,6 +55,7 @@
     border-style: ridge;
     h3 {
       margin: 10px;
+      padding: 1em;
     }
     label {
       margin: 2px;
@@ -113,8 +114,24 @@
     .allItems
   }
 
+  #collegeStudents {
+    display: flex;
+    list-style-type: none;
+    flex-direction: row;
+    a{
+      .allItems;
+    }
+  }
+
   #single-student, #single-campus {
-    .singleItem
+    .singleItem;
+    a{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: fit-content;
+      height: fit-content;
+    }
   }
 
   #campus-form, #student-form {

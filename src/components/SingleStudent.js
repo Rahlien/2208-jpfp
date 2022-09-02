@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Navigate, useParams } from 'react-router-dom'
-import { deleteStudent, getStudent } from '../features/studentsSlice'
-import { getCampus } from '../features/campusSlice'
+import { Navigate, useParams, Link } from 'react-router-dom'
+import { deleteStudent, getStudent, enrollCollege, updateStudent } from '../features/studentsSlice'
 import SelectCampus from './SelectCampus'
 
 
@@ -10,32 +9,32 @@ import SelectCampus from './SelectCampus'
 function SingleStudent() {
     const params = useParams()
     const dispatch = useDispatch()
-    const {student} = useSelector(state => state.students)
-    const {campus} = useSelector(state => state.campuses)
+    const { student } = useSelector(state => state.students)
+    const { campuses } = useSelector(state => state.campuses)
     const [deleted, setDeleted] = useState(false)
+    const id = Number(params.id)
     
     useEffect(() => {
-        dispatch(getStudent(params))
+        dispatch(getStudent(id))
     }, [])
 
-    useEffect(() => {
-        console.log(student.campusId)
-        dispatch(getCampus(student.campusId))
-    }, [])
-    
-    console.log(student)
-    console.log(campus)
 
     function handleChange(e) {
         console.log(e.target.value)
+        const collegeId = e.target.value
+        dispatch(enrollCollege(collegeId))
     }
     
-    function campusCheck () {
-        if(student.campusId){
+    function campusCheck (campusId) {
+        let campus = campuses.filter(campus => campus.id === Number(campusId))[0]
+        
+        if(campus){
             return (
-            <div id='single-campus'> 
-                <h1>{campus.name}</h1>
-                <img src={campus.imageUrl} alt={`${campus.name} Image`} />
+            <div id='single-campus'>
+                <Link to={`/campuses/${campusId}`}> 
+                    <h1>{campus.name}</h1>
+                    <img src={campus.imageUrl} alt={`${campus.name} Image`} />
+                </Link>
             </div>
             )
         }
@@ -59,7 +58,7 @@ function SingleStudent() {
             <h1>{`${student.firstName} ${student.lastName}`}</h1>
             <img src={student.imageUrl} alt={`${student.firstName} Image`} />
             <h3>GPA: {student.gpa}</h3>
-            {campusCheck()}
+            {campusCheck(student.campusId)}
             <button id='delete' onClick={handleDelete}>X</button>
         </div>
     )

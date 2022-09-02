@@ -6,17 +6,12 @@ function SelectCampus ({onChange}) {
     const dispatch = useDispatch()
     const { campuses } = useSelector((state) => state)
     const [updated, setUpdate] = useState(false)
-    
-    console.log(campuses)
 
     useEffect(() => {
         dispatch(getCampuses())
     },[])
 
-    function handleChange(e) {
-        console.log(e.target.value)
-    }
-    
+
     return (
         <select id="selector" defaultValue={""} onChange={onChange}>
             <option value="" disabled>Please Choose a School</option>
