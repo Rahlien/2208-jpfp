@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getStudents } from '../features/studentSlice'
+import { Link } from 'react-router-dom'
+import { getStudents } from '../features/studentsSlice'
 
 
 function Students() {
     const students = useSelector(state => state.students)
     const dispatch = useDispatch()
-    console.log(students)
-    console.log(students.students)
 
     useEffect(() => {
         dispatch(getStudents())
@@ -19,17 +18,19 @@ function Students() {
             {students.loading && <div>Loading...</div>}
             {!students.loading && students.error ? <div>Error: {students.error}</div>: null}
             {!students.loading && students.students.length ? (
-                <div id='students'>
+                <ul id='students'>
                     {
                         students.students.map(student => (
-                            <div key={student.id}>
-                                <img src={student.imageUrl} alt={`${student.name} Image`} width="150" height="150" />
-                                <h4>{`${student.firstName} ${student.lastName}`}</h4>
-                            </div>
+                            <li key={student.id} id="singleStudent"> 
+                                <Link to={`/students/${student.id}`} >
+                                    <img src={student.imageUrl} alt={`${student.name} Image`} width="150" height="150"/>
+                                    <h4>{`${student.firstName} ${student.lastName}`}</h4>
+                                </Link>
+                            </li>
                             
                         ))
                     }
-                </div>
+                </ul>
             ): null}
         </div>
     )

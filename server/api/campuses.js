@@ -32,8 +32,8 @@ router.post('/', async (req, res, next) => {
 // PUT /api/campuses/:id
 router.put('/:id', async (req, res, next) => {
   try {
-    const todo = await Campus.findByPk(req.params.id);
-    res.send(await todo.update(req.body));
+    const campus = await Campus.findByPk(req.params.id);
+    res.send(await campus.update(req.body));
   } catch (error) {
     next(error);
   }
@@ -42,9 +42,9 @@ router.put('/:id', async (req, res, next) => {
 // DELETE /api/campuses/:id
 router.delete('/:id', async (req, res, next) => {
   try {
-    const todo = await Campus.findByPk(req.params.id);
-    await todo.destroy();
-    res.send(todo);
+    const campus = await Campus.findByPk(req.params.id);
+    await campus.destroy();
+    res.send(campus);
   } catch (error) {
     next(error);
   }

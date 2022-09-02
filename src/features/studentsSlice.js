@@ -8,13 +8,23 @@ export const getStudents = createAsyncThunk('students/getStudents', () => {
         })
 })
 
-const studentSlice = createSlice({
+export const getStudent = createAsyncThunk('students/getStudent', (params) => {
+    return axios.get(`/api/students/${params.id}`)
+        .then((res) => {
+            return res.data
+        })
+})
+
+
+const studentsSlice = createSlice({
     name: 'students',
     initialState: {
         loading: false,
         students: [],
+        student: {},
         error: ''
     },
+    reducers: {},
     extraReducers: {
         [getStudents.pending]: (state) => {
             state.loading = true
@@ -25,8 +35,18 @@ const studentSlice = createSlice({
         },
         [getStudents.rejected]: (state) => {
             state.loading = false
-        }    
-    }
+        },
+        [getStudent.pending]: (state) => {
+            state.loading = true
+        },
+        [getStudent.fulfilled]: (state, action) => {
+            state.loading = false
+            state.student = action.payload
+        },
+        [getStudent.rejected]: (state) => {
+            state.loading = false
+        }
+    }    
 })
 
-export default studentSlice.reducer
+export default studentsSlice.reducer

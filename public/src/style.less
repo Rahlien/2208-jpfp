@@ -1,23 +1,107 @@
+
+
 * {
-    margin: 0;
-    box-sizing: border-box;
-    font-family: arial, sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+}
+  button {
+    border-radius: 2em;
+    margin: 10px;
   }
 
-  #campuses {
+  .visited {
+    text-decoration: none;
+    color: #000000
+  }
+  .form {
     display: flex;
-    justify-content: space-between;
-    align-content: flex-start;
-    flex-wrap: wrap;
-    flex-direction: row;
+    margin: 10px;
+    padding: 2em;
+    background-color: #494949;
+    border-radius: 2em;
+    flex-direction: column;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    justify-content: flex-end;
+    align-content: space-around;
   }
 
-  #students {
+  .allItems {
     display: flex;
-    justify-content: space-between;
-    align-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
+    margin: 10px;
+    align-items: center;
+    img {
+      border-radius: 1em;
+      margin: 1em;
+    }
+    a {
+      display: flex;
+      align-self: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+
+  .singleItem {
+    display: flex;
+    margin: 10px;
+    padding: 2em;
+    border-radius: 2em;
+    flex-direction: column;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    align-items: center;
+    justify-content: center;
+    align-content: space-around;
+    img {
+      max-width: 60%;
+      height: 60%;
+      border-radius: 1em;
+      margin: 2em;
+    }
+    p {
+      max-width: 75%;
+      margin: 10px;
+    }
+  }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+  }
+
+  #campuses, #students {
+    .allItems
+  }
+
+  #single-student, #single-campus {
+    .singleItem
+  }
+
+  #campus-form {
+    .form
+  }
+
+  #campusForm {
+    float: right;
+  }
+
+
+  li {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    flex-direction: column;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-self: center;
+  }
+
+  li :visited {
+    .visited
   }
   
   body::after {
@@ -45,6 +129,7 @@
     align-content: space-between;
   }
 
+
   nav :visited {
     text-decoration: none;
     color: #c0c0c0
@@ -56,6 +141,7 @@
   }
   
   main {
+    margin: 10px;
     align-items: center;
     display: flex;
     flex-direction: column;

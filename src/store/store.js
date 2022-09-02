@@ -2,14 +2,14 @@
 // import thunk from "redux-thunk";
 import { configureStore } from '@reduxjs/toolkit'
 import '../features/campusSlice'
-import '../features/studentSlice'
-import studentReducer from '../features/studentSlice'
+import '../features/studentsSlice'
+import studentsReducer from '../features/studentsSlice'
 import campusReducer from '../features/campusSlice'
 import logger from 'redux-logger'
 
 const store = configureStore({
     reducer: {
-        students: studentReducer,
+        students: studentsReducer,
         campuses: campusReducer,
         middleware: [logger]
     }
