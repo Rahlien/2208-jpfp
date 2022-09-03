@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 
+
 export const getStudents = createAsyncThunk('students/getStudents', () => {
     return axios.get('/api/students')
         .then((res) => {
@@ -30,11 +31,10 @@ export const addNewStudent = (student) => {
     }
   }
   
-  export const updateStudent = (id) => {
+  export const updateStudent = (student, id) => {
     return async (dispatch) => {
-      const { data: student } = await axios.post(`/api/students/${id}`)
-      console.log(student)
-      dispatch(updateStudents(student))
+      const { data: updatedStudent } = await axios.put(`/api/students/${id}`, student)
+      dispatch(updateStudents(updatedStudent))
     }
   }  
 
@@ -56,14 +56,9 @@ const studentsSlice = createSlice({
             state.students = state.students.filter((student) => student.id !== Number(studentId))
             return state
         },
-        enrollCollege: (state, action) => {
-           const campusId = action.payload
-           state.student.campusId = campusId
-        },
-        updateStudent: (state, action) => {
+        updateStudents: (state, action) => {
             state.students.map(student => student.id === action.payload.id ? student: action.payload)
         }
-
     },
     extraReducers: {
         [getStudents.pending]: (state) => {
@@ -89,5 +84,5 @@ const studentsSlice = createSlice({
     }    
 })
 
-export const { addStudent, removeStudent, enrollCollege } = studentsSlice.actions
+export const { addStudent, removeStudent, updateStudents } = studentsSlice.actions
 export default studentsSlice.reducer

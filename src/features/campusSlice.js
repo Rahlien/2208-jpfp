@@ -32,6 +32,13 @@ export const deleteCampus = (id) => {
     }
 }
 
+export const updateCampus = (campus, id) => {
+    return async (dispatch) => {
+      const { data: updatedCampus } = await axios.put(`/api/campuses/${id}`, campus)
+      dispatch(updateCampuses(updatedCampus))
+    }
+  } 
+
 const campusSlice = createSlice({
     name: 'campuses',
     initialState: {
@@ -49,6 +56,9 @@ const campusSlice = createSlice({
             const campusId = action.payload
             state.campuses = state.campuses.filter((campus) => campus.id !== Number(campusId))
             return state
+        },
+        updateCampuses: (state, action) => {
+            state.campuses.map(campus => campus.id === action.payload.id ? campus: action.payload)
         }
     },
     extraReducers: {
@@ -75,5 +85,5 @@ const campusSlice = createSlice({
     }
 })
 
-export const { addCampus, removeCampus } = campusSlice.actions
+export const { addCampus, removeCampus, updateCampuses } = campusSlice.actions
 export default campusSlice.reducer

@@ -3,23 +3,18 @@
   box-sizing: border-box;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+.hover {
+  text-decoration: none;
+  color: #63e2f7;
+}
 button {
   border-radius: 2em;
   margin: 10px;
   background-color: ghostwhite;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   border-style: ridge;
-  -webkit-transition: max-width 1s;
-  transition: max-width 1s;
-  display: inline-block;
-  vertical-align: top;
-  white-space: nowrap;
-  overflow: hidden;
   border-color: lightgrey;
   font-weight: bold;
-}
-button :hover {
-  max-width: 7rem;
 }
 #selector {
   margin: 10px;
@@ -80,7 +75,7 @@ button :hover {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   align-items: center;
   justify-content: center;
-  align-content: space-around;
+  align-content: center;
   background-color: azure;
 }
 .singleItem img {
@@ -93,13 +88,19 @@ button :hover {
   max-width: 75%;
   margin: 10px;
 }
+.singleItem a {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 h1 {
   display: flex;
   justify-content: center;
   align-items: top;
 }
 #campuses,
-#students {
+#students,
+#collegeStudents {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -108,39 +109,70 @@ h1 {
   align-items: center;
 }
 #campuses img,
-#students img {
+#students img,
+#collegeStudents img {
   border-radius: 1em;
   margin: 1em;
 }
 #campuses a,
-#students a {
-  display: flex;
-  align-self: center;
-  align-items: center;
-  flex-direction: column;
-}
-#collegeStudents {
-  display: flex;
-  list-style-type: none;
-  flex-direction: row;
-}
+#students a,
 #collegeStudents a {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin: 10px;
-  align-items: center;
-}
-#collegeStudents a img {
-  border-radius: 1em;
-  margin: 1em;
-}
-#collegeStudents a a {
-  display: flex;
   align-self: center;
   align-items: center;
   flex-direction: column;
+}
+#campus-form,
+#student-form,
+#studentEdit-form,
+#campusEdit-form {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+  margin: 10px;
+  padding: 2em;
+  background-color: #63e2f7;
+  border-radius: 2em;
+  flex-direction: column;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  justify-content: flex-end;
+  align-content: space-around;
+  width: 300px;
+  border-color: aliceblue;
+  border-style: ridge;
+}
+#campus-form h3,
+#student-form h3,
+#studentEdit-form h3,
+#campusEdit-form h3 {
+  margin: 10px;
+  padding: 1em;
+}
+#campus-form label,
+#student-form label,
+#studentEdit-form label,
+#campusEdit-form label {
+  margin: 2px;
+}
+#campusForm,
+#studentForm {
+  position: relative;
+  left: 5px;
+  width: 20%;
+}
+#campus-container,
+#student-container {
+  display: flex;
+  flex-direction: row;
+}
+#homePage #studentsPage,
+#homePage #campusesPage {
+  display: flex;
+  flex-direction: row;
+}
+#studentsPage,
+#campusesPage {
+  display: flex;
+  flex-direction: row;
 }
 #single-student,
 #single-campus {
@@ -152,7 +184,7 @@ h1 {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   align-items: center;
   justify-content: center;
-  align-content: space-around;
+  align-content: center;
   background-color: azure;
 }
 #single-student img,
@@ -172,49 +204,13 @@ h1 {
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: fit-content;
-  height: fit-content;
 }
-#campus-form,
-#student-form {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+#single-student h2,
+#single-campus h2 {
   display: flex;
-  margin: 10px;
-  padding: 2em;
-  background-color: #63e2f7;
-  border-radius: 2em;
-  flex-direction: column;
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-  justify-content: flex-end;
-  align-content: space-around;
-  width: 300px;
-  border-color: aliceblue;
+  justify-content: center;
   border-style: ridge;
-}
-#campus-form h3,
-#student-form h3 {
-  margin: 10px;
-  padding: 1em;
-}
-#campus-form label,
-#student-form label {
-  margin: 2px;
-}
-#campusForm,
-#studentForm {
-  position: relative;
-  left: 5px;
-  width: 20%;
-}
-#homePage #studentsPage,
-#homePage #campusesPage {
-  display: flex;
-  flex-direction: row;
-}
-#studentsPage,
-#campusesPage {
-  display: flex;
-  flex-direction: row;
+  margin: 1em;
 }
 ul {
   display: flex;
@@ -244,7 +240,9 @@ li a {
 }
 #singleStudent,
 #singleCampus {
+  display: flex;
   text-decoration: none;
+  align-items: center;
 }
 li :visited {
   text-decoration: none;
@@ -287,18 +285,18 @@ nav a {
   padding: 5px;
   border-style: ridge;
   border-color: aliceblue;
+  margin: 10px;
 }
 nav :visited {
   text-decoration: none;
   color: #000000;
 }
-nav :hover {
-  text-decoration: none;
-  color: #63e2f7;
-}
+nav :hover,
+button :hover,
+#singleCampus :hover,
 #singleStudent :hover {
-  color: #63e2f7;
   text-decoration: none;
+  color: #63e2f7;
 }
 main {
   margin: 10px;

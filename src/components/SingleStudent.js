@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Navigate, useParams, Link } from 'react-router-dom'
-import { deleteStudent, getStudent, enrollCollege, updateStudent } from '../features/studentsSlice'
+import { deleteStudent, getStudent } from '../features/studentsSlice'
+import EditStudent from './EditStudents'
 import SelectCampus from './SelectCampus'
 
 
@@ -17,13 +18,6 @@ function SingleStudent() {
     useEffect(() => {
         dispatch(getStudent(id))
     }, [])
-
-
-    function handleChange(e) {
-        console.log(e.target.value)
-        const collegeId = e.target.value
-        dispatch(enrollCollege(collegeId))
-    }
     
     function campusCheck (campusId) {
         let campus = campuses.filter(campus => campus.id === Number(campusId))[0]
@@ -40,8 +34,7 @@ function SingleStudent() {
         }
         return (
             <div id="selector-container">
-                <h4>This student is not enrolled.</h4>
-                <SelectCampus onChange={handleChange}/>
+                <h4>This student is currently not enrolled.</h4>
             </div>
         )   
     }
@@ -54,13 +47,16 @@ function SingleStudent() {
     
 
     return (
-        <div id='single-student'> 
-            <h1>{`${student.firstName} ${student.lastName}`}</h1>
-            <img src={student.imageUrl} alt={`${student.firstName} Image`} />
-            <h3>GPA: {student.gpa}</h3>
-            {campusCheck(student.campusId)}
-            <button id='delete' onClick={handleDelete}>X</button>
-        </div>
+            <div id="student-container">
+                <div id='single-student'> 
+                <h1>{`${student.firstName} ${student.lastName}`}</h1>
+                    <img src={student.imageUrl} alt={`${student.firstName} Image`} />
+                    <h3>GPA: {student.gpa}</h3>
+                    <button id='delete' onClick={handleDelete}>X</button>
+                {campusCheck(student.campusId)}
+                </div>
+                <div id="editStudentContainer">{<EditStudent key={student.id} student={student}/>}</div>
+            </div>
     )
 }
 

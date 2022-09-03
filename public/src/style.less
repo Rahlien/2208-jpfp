@@ -6,24 +6,19 @@
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
 }
 
+  .hover{
+    text-decoration: none;
+    color: rgb(99, 226, 247);
+  }
+
   button {
     border-radius: 2em;
     margin: 10px;
     background-color:ghostwhite;
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
     border-style: ridge;
-    -webkit-transition: max-width 1s;
-    transition: max-width 1s;
-    display: inline-block;
-    vertical-align: top;
-    white-space: nowrap;
-    overflow: hidden;
     border-color: lightgrey;
     font-weight: bold;
-  }
-
-  button :hover {
-    max-width: 7rem;
   }
 
   #selector {
@@ -90,7 +85,7 @@
     box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
     align-items: center;
     justify-content: center;
-    align-content: space-around;
+    align-content: center;
     background-color: azure;
     img {
       max-width: 60%;
@@ -102,6 +97,11 @@
       max-width: 75%;
       margin: 10px;
     }
+    a {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
   }
 
   h1 {
@@ -110,38 +110,26 @@
     align-items: top;
   }
 
-  #campuses, #students {
+  #campuses, #students, #collegeStudents {
     .allItems
   }
 
-  #collegeStudents {
-    display: flex;
-    list-style-type: none;
-    flex-direction: row;
-    a{
-      .allItems;
-    }
-  }
+ 
 
-  #single-student, #single-campus {
-    .singleItem;
-    a{
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      width: fit-content;
-      height: fit-content;
-    }
-  }
 
-  #campus-form, #student-form {
+  #campus-form, #student-form, #studentEdit-form, #campusEdit-form {
     .form
   }
 
-  #campusForm, #studentForm {
+  #campusForm, #studentForm  {
     position: relative;
     left: 5px;
     width: 20%;
+  }
+
+  #campus-container, #student-container {
+    display: flex;
+    flex-direction: row;
   }
 
   #homePage {
@@ -154,6 +142,16 @@
   #studentsPage, #campusesPage {
     display: flex;
     flex-direction: row;
+  }
+
+  #single-student, #single-campus {
+    .singleItem;
+    h2 {
+      display: flex;
+      justify-content: center;
+      border-style: ridge;
+      margin: 1em;
+    }
   }
 
   ul {
@@ -185,7 +183,9 @@
   }
 
   #singleStudent, #singleCampus {
+    display: flex;
     text-decoration: none;
+    align-items: center;
   }
 
   li :visited {
@@ -228,7 +228,8 @@
       text-decoration: none;
       padding: 5px;
       border-style: ridge;
-      border-color: aliceblue
+      border-color: aliceblue;
+      margin: 10px;
     }
   }
 
@@ -238,15 +239,8 @@
     color: #000000
   }
 
-  nav :hover {
-    text-decoration: none;
-    color: rgb(99, 226, 247);
-  }
-
-  #singleStudent :hover {
-    text-decoration: none;
-    color: rgb(99, 226, 247);
-    text-decoration: none;
+  nav :hover, button :hover, #singleCampus :hover, #singleStudent :hover{ 
+    .hover
   }
   
   main {
