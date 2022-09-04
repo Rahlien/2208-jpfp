@@ -8,8 +8,8 @@ const NewCampus = ()=> {
   const [form, setForm] = useState({
     name: '',
     address: '',
-    imageUrl: undefined,
-    description: undefined
+    imageUrl: "",
+    description: ""
   })
 
   const dispatch = useDispatch();

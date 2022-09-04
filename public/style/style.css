@@ -159,6 +159,13 @@ h1 {
   left: 5px;
   width: 20%;
 }
+#campusForm h3,
+#studentForm h3 {
+  font-family: fantasy;
+  font-weight: lighter;
+  border-style: ridge;
+  border-radius: 1em;
+}
 #campus-container,
 #student-container {
   display: flex;
@@ -169,10 +176,18 @@ h1 {
   display: flex;
   flex-direction: row;
 }
+#singleCampus {
+  max-width: 330px;
+  text-decoration: none;
+}
 #studentsPage,
 #campusesPage {
   display: flex;
   flex-direction: row;
+}
+#studentsPage h4,
+#campusesPage h4 {
+  text-decoration: none;
 }
 #single-student,
 #single-campus {

@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Navigate, useParams, Link } from 'react-router-dom'
 import { deleteStudent, getStudent } from '../features/studentsSlice'
 import EditStudent from './EditStudents'
-import SelectCampus from './SelectCampus'
-
-
 
 function SingleStudent() {
     const params = useParams()

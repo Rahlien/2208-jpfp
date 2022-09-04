@@ -26,7 +26,6 @@ export const deleteStudent = (id) => {
 export const addNewStudent = (student) => {
     return async (dispatch) => {
       const { data: newStudent } = await axios.post('/api/students', student)
-      console.log(newStudent)
       dispatch(addStudent(newStudent))
     }
   }

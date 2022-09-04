@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { updateStudent } from '../features/studentsSlice';
 import { useDispatch } from 'react-redux';
 import SelectCampus from './SelectCampus';
@@ -11,6 +11,7 @@ const EditStudent = ({student})=> {
 
   const dispatch = useDispatch();
 
+
   const handleChange = (props) => (e) => {
     setForm({
       ...form,
@@ -20,11 +21,10 @@ const EditStudent = ({student})=> {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(form)
     dispatch(updateStudent(form, form.id))
     setUpdated(true);
 }
-console.log(updated)
+
 if(updated){ 
  return <Navigate to="/students" />
 }

@@ -6,10 +6,9 @@ import NewStudent from './NewStudent'
 
 
 function Students() {
-    const students = useSelector((state) => state.students)
+    const { students, loading, error } = useSelector((state) => state.students)
     const dispatch = useDispatch()
-    console.log(students)
-
+ 
     useEffect(() => {
         dispatch(getStudents())
     }, [])
@@ -18,12 +17,12 @@ function Students() {
         <>
         <h1>All Students</h1>
         <div id="studentsPage">
-            {students.loading && <div>Loading...</div>}
-            {!students.loading && students.error ? <div>Error: {students.error}</div>: null}
-            {!students.loading && students.students.length ? (
+            {loading && <div>Loading...</div>}
+            {!loading && error ? <div>Error: {error}</div>: null}
+            {!loading && students.length ? (
                 <ul id='students'>
                     {
-                        students.students.map(student => (
+                        students.map(student => (
                             <li key={student.id} id="singleStudent"> 
                                 <Link to={`/students/${student.id}`} >
                                     <img src={student.imageUrl} alt={`${student.name} Image`} width="150" height="150"/>

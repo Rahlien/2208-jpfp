@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Navigate, Link } from 'react-router-dom'
-import { deleteCampus, getCampus, updateCampus } from '../features/campusSlice'
+import { deleteCampus, getCampus } from '../features/campusSlice'
 import { getStudents, updateStudent } from '../features/studentsSlice'
 import EditCampus from './EditCampuses'
 
@@ -14,8 +14,6 @@ function SingleCampus() {
     const [deleted, setDeleted] = useState(false)
     const [updated, setUpdate] = useState(false)
     const id = Number(params.id)
-    const [collegeStudent, setStudent] = useState([])
-
     
     useEffect(() => {
         dispatch(getStudents())

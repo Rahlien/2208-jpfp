@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { addNewStudent } from '../features/studentsSlice';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import SelectCampus from './SelectCampus';
 
 const NewStudent = ()=> {
@@ -26,7 +25,6 @@ const NewStudent = ()=> {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(form)
     dispatch(addNewStudent(form));
   }
 

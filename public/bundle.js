@@ -4375,18 +4375,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Campuses() {
-  var campuses = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.campuses;
-  });
+  }),
+      campuses = _useSelector.campuses,
+      loading = _useSelector.loading,
+      error = _useSelector.error;
+
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_features_campusSlice__WEBPACK_IMPORTED_MODULE_2__.getCampuses)());
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "All Campuses"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "campusesPage"
-  }, campuses.loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Loading..."), !campuses.loading && campuses.error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Error: ", campuses.error) : null, !campuses.loading && campuses.campuses.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Loading..."), !loading && error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Error: ", error) : null, !loading && campuses.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
     id: "campuses"
-  }, campuses.campuses.map(function (campus) {
+  }, campuses.map(function (campus) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       key: campus.id,
       id: "singleCampus"
@@ -4584,12 +4588,9 @@ var EditStudent = function EditStudent(_ref) {
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    console.log(form);
     dispatch((0,_features_studentsSlice__WEBPACK_IMPORTED_MODULE_1__.updateStudent)(form, form.id));
     setUpdated(true);
   };
-
-  console.log(updated);
 
   if (updated) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Navigate, {
@@ -4747,8 +4748,8 @@ var NewCampus = function NewCampus() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     name: '',
     address: '',
-    imageUrl: undefined,
-    description: undefined
+    imageUrl: "",
+    description: ""
   }),
       _useState2 = _slicedToArray(_useState, 2),
       form = _useState2[0],
@@ -4842,7 +4843,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var NewStudent = function NewStudent() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     firstName: '',
@@ -4866,7 +4866,6 @@ var NewStudent = function NewStudent() {
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
-    console.log(form);
     dispatch((0,_features_studentsSlice__WEBPACK_IMPORTED_MODULE_1__.addNewStudent)(form));
   };
 
@@ -5054,12 +5053,6 @@ function SingleCampus() {
       setUpdate = _useState4[1];
 
   var id = Number(params.id);
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      collegeStudent = _useState6[0],
-      setStudent = _useState6[1];
-
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_features_studentsSlice__WEBPACK_IMPORTED_MODULE_3__.getStudents)());
   }, []);
@@ -5156,11 +5149,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var _features_studentsSlice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../features/studentsSlice */ "./src/features/studentsSlice.js");
 /* harmony import */ var _EditStudents__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditStudents */ "./src/components/EditStudents.js");
-/* harmony import */ var _SelectCampus__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SelectCampus */ "./src/components/SelectCampus.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5179,9 +5171,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 function SingleStudent() {
-  var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useParams)();
+  var params = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useParams)();
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
 
   var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
@@ -5212,7 +5203,7 @@ function SingleStudent() {
     if (campus) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
         id: "single-campus"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
         to: "/campuses/".concat(campusId)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, campus.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("img", {
         src: campus.imageUrl,
@@ -5230,7 +5221,7 @@ function SingleStudent() {
     setDeleted(true);
   };
 
-  if (deleted) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Navigate, {
+  if (deleted) return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Navigate, {
     to: "/students"
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -5279,19 +5270,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Students() {
-  var students = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+  var _useSelector = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
     return state.students;
-  });
+  }),
+      students = _useSelector.students,
+      loading = _useSelector.loading,
+      error = _useSelector.error;
+
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
-  console.log(students);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     dispatch((0,_features_studentsSlice__WEBPACK_IMPORTED_MODULE_2__.getStudents)());
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "All Students"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     id: "studentsPage"
-  }, students.loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Loading..."), !students.loading && students.error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Error: ", students.error) : null, !students.loading && students.students.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
+  }, loading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Loading..."), !loading && error ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Error: ", error) : null, !loading && students.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", {
     id: "students"
-  }, students.students.map(function (student) {
+  }, students.map(function (student) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", {
       key: student.id,
       id: "singleStudent"
@@ -5589,10 +5583,9 @@ var addNewStudent = function addNewStudent(student) {
             case 2:
               _yield$axios$post = _context2.sent;
               newStudent = _yield$axios$post.data;
-              console.log(newStudent);
               dispatch(addStudent(newStudent));
 
-            case 6:
+            case 5:
             case "end":
               return _context2.stop();
           }

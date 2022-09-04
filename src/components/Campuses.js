@@ -6,7 +6,7 @@ import NewCampus from './NewCampus'
 
 
 function Campuses() {
-    const campuses = useSelector(state => state.campuses)
+    const { campuses, loading, error} = useSelector(state => state.campuses)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -17,12 +17,12 @@ function Campuses() {
         <>
         <h1>All Campuses</h1>
         <div id="campusesPage">
-            {campuses.loading && <div>Loading...</div>}
-            {!campuses.loading && campuses.error ? <div>Error: {campuses.error}</div>: null}
-            {!campuses.loading && campuses.campuses.length ? (
+            {loading && <div>Loading...</div>}
+            {!loading && error ? <div>Error: {error}</div>: null}
+            {!loading && campuses.length ? (
                 <ul id='campuses'>
                     {
-                        campuses.campuses.map(campus => (
+                        campuses.map(campus => (
                             <li key={campus.id} id='singleCampus'>
                                 <Link to={`/campuses/${campus.id}`} >
                                     <img src={campus.imageUrl} alt={`${campus.name} Image`} width="300" height="250" />
