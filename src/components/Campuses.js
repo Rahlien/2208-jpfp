@@ -13,6 +13,8 @@ function Campuses() {
         dispatch(getCampuses())
     }, [])
 
+    
+
     return (
         <>
         <h1>All Campuses</h1>
@@ -33,7 +35,7 @@ function Campuses() {
                         ))
                     }
                 </ul>
-            ): null}
+            ): <h1>No Such Page</h1>}
             <div id="campusForm">{<NewCampus />}</div>
            
         </div>

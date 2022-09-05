@@ -9,9 +9,6 @@ const NewStudent = ()=> {
     firstName: '',
     lastName: '',
     email: '',
-    gpa: undefined,
-    imageUrl: undefined,
-    campusId: undefined,
   })
 
   const dispatch = useDispatch();
@@ -23,14 +20,41 @@ const NewStudent = ()=> {
     })
   }
 
+  
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(addNewStudent(form));
+    
+    function showError(form) {
+      const filter = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+      const error = document.getElementById('error3')
+      let email = form.email
+      let firstName = form.firstName
+      let lastName = form.lastName
+  
+      if(!email.match(filter)) {
+        error.textContent="Please provide a valid e-mail address"
+        return false
+      }
+      if(firstName === '' || null || undefined){
+        error.textContent= "First Name is Required"
+        return false
+      }
+      if(lastName === '' || null || undefined){
+        error.textContent="Last Name is Required"
+        return false
+      }
+      error.textContent=""
+      return true
+    }
+
+    if (showError(form)) dispatch(addNewStudent(form));
   }
 
 
   return (
     <form id='student-form' onSubmit={handleSubmit}>
+      <span id="error3"></span>
       <h3>Register New Student</h3>
       <label htmlFor='firstName'>First Name:</label>
       <input onChange={handleChange('firstName')} name='firstName' value={form.firstName} />

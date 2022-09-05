@@ -34,7 +34,7 @@ function Students() {
                         ))
                     }
                 </ul>
-            ): null}
+            ): <h1>No Such Page</h1>}
             <div id="studentForm">{<NewStudent />}</div>
         </div>
         </>

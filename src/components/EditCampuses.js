@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { updateCampus } from '../features/campusSlice';
 import { useDispatch } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 
 const EditCampus = ({campus})=> {
 
-  const [updated, setUpdated] = useState(false) 
-  const [form, setForm] = useState(campus)
+  const [form, setForm] = useState({})
 
   const dispatch = useDispatch();
 
@@ -19,13 +17,18 @@ const EditCampus = ({campus})=> {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateCampus(form, form.id));
-    setUpdated(true);
-  }
+    
+    if(!form.name){
+      form.name = campus.name
+    }
 
-  if(updated){ 
-    return <Navigate to="/campuses" />
-   }
+    if(!form.address){
+      form.address = campus.address
+    }
+
+    dispatch(updateCampus(form, campus.id));
+    window.location.reload(false)
+  }
 
   return (
     <form id='campusEdit-form' onSubmit={handleSubmit}>

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { ValidationError } = require('webpack');
 const Student = require('../db/models/Student');
 
 
@@ -24,8 +25,8 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     res.status(201).send(await Student.create(req.body));
-  } catch (error) {
-    next(error);
+  } catch (ex) {
+    next(ex);
   }
 });
 

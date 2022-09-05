@@ -7,14 +7,17 @@ import EditStudent from './EditStudents'
 function SingleStudent() {
     const params = useParams()
     const dispatch = useDispatch()
-    const { student } = useSelector(state => state.students)
+    const { student, loading, error } = useSelector(state => state.students)
     const { campuses } = useSelector(state => state.campuses)
     const [deleted, setDeleted] = useState(false)
+ 
     const id = Number(params.id)
-    
+
     useEffect(() => {
         dispatch(getStudent(id))
+        
     }, [])
+
     
     function campusCheck (campusId) {
         let campus = campuses.filter(campus => campus.id === Number(campusId))[0]
@@ -45,14 +48,20 @@ function SingleStudent() {
 
     return (
             <div id="student-container">
-                <div id='single-student'> 
-                <h1>{`${student.firstName} ${student.lastName}`}</h1>
-                    <img src={student.imageUrl} alt={`${student.firstName} Image`} />
-                    <h3>GPA: {student.gpa}</h3>
-                    <button id='delete' onClick={handleDelete}>X</button>
-                {campusCheck(student.campusId)}
-                </div>
-                <div id="editStudentContainer">{<EditStudent key={student.id} student={student}/>}</div>
+                {loading && <div>Loading...</div>}
+                {!loading && error ? <div>Error: {error}</div>: null}
+                {!loading && student.id ? (
+                <>
+                    <div id='single-student'> 
+                        <h1>{`${student.firstName} ${student.lastName}`}</h1>
+                        <img src={student.imageUrl} alt={`${student.firstName} Image`} />
+                        <h3>GPA: {student.gpa}</h3>
+                        <button id='delete' onClick={handleDelete}>X</button>
+                        {campusCheck(student.campusId)}
+                    </div>
+                    <div id="editStudentContainer">{<EditStudent key={student.id} student={student} onSubmit={()=>setUpdated(true)}/>}</div>
+                </>
+                ): <h1>No such student Found</h1>}
             </div>
     )
 }

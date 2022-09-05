@@ -48,6 +48,12 @@ button {
 .form label {
   margin: 2px;
 }
+.form span {
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-weight: bold;
+}
 .allItems {
   display: flex;
   justify-content: center;
@@ -152,6 +158,15 @@ h1 {
 #studentEdit-form label,
 #campusEdit-form label {
   margin: 2px;
+}
+#campus-form span,
+#student-form span,
+#studentEdit-form span,
+#campusEdit-form span {
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-weight: bold;
 }
 #campusForm,
 #studentForm {

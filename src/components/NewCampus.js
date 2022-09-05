@@ -7,9 +7,7 @@ const NewCampus = ()=> {
 
   const [form, setForm] = useState({
     name: '',
-    address: '',
-    imageUrl: "",
-    description: ""
+    address: ''
   })
 
   const dispatch = useDispatch();
@@ -23,11 +21,30 @@ const NewCampus = ()=> {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addNewCampus(form));
+
+    function showError(form) {
+      const error = document.getElementById('error1')
+      let name = form.name
+      let address = form.address
+
+      if(name === '' || null || undefined){
+        error.textContent= "College Name is Required"
+        return false
+      }
+      if(address === '' || null || undefined){
+        error.textContent="Address is Required"
+        return false
+      }
+      error.textContent=""
+      return true
+    }
+    
+    if (showError(form)) dispatch(addNewCampus(form));
   }
 
   return (
     <form id='campus-form' onSubmit={handleSubmit}>
+      <span id="error1"></span>
       <h3>Register a new Campus</h3>  
       <label htmlFor='name'>College Name:</label>
       <input onChange={handleChange('name')} name='taskName' value={form.name} />
